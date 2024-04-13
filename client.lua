@@ -1,5 +1,5 @@
-local Record = 'Start Recording'
-
+print('hx_record 1.0.1 has been started.')
+  
   Citizen.CreateThread(function()
     lib.registerContext({
       id = 'hx_rockstar',
@@ -8,19 +8,19 @@ local Record = 'Start Recording'
         {
           title = 'Record',
           icon = 'play',
-          event = 'record',
+          event = 'hx_record:record',
           description = 'Start Recording'
         },
         {
           title = 'Stop Recording',
           icon = 'stop',
-          event = 'save',
+          event = 'hx_record:save',
           description = 'Stop Recording & Save Clip'
         },
         {
           title = 'Open Rockstar Editor',
           icon = 'clapperboard',
-          event = 'rockstar',
+          event = 'hx_record:rockstar',
           description = 'Open Rockstar Editor (This will disconnect you from the server)'
         }
       }
@@ -29,27 +29,50 @@ local Record = 'Start Recording'
 
 
 RegisterCommand('rockstar', function()
-  TriggerEvent('rockstarmenu')
-end)
-
-RegisterNetEvent('rockstarmenu')
-AddEventHandler('rockstarmenu', function()
   lib.showContext('hx_rockstar')
 end)
 
-RegisterNetEvent('record', function()
-  TriggerEvent('record')
+RegisterNetEvent('hx_record:record', function()
   StartRecording(1)
+  lib.notify({
+    title = 'Recording Started!',
+    description = 'The recording has been started',
+    type = 'inform',
+    icon = 'play',
+    position = 'top-center',
+    style = {
+      backgroundColor = '#141517',
+      color = '#C1C2C5',
+      ['.description'] = {
+        color = '#909296'
+      }
+  },
+    iconColor = 'white'
+  })
 end)
 
-RegisterNetEvent('save', function()
-  TriggerEvent('save')
+RegisterNetEvent('hx_record:save', function()
   StopRecordingAndSaveClip()
+  lib.notify({
+    title = 'Recording Saved!',
+    description = 'The recording has been saved to your rockstar collection',
+    type = 'inform',
+    icon = 'stop',
+    position = 'top-center',
+    style = {
+      backgroundColor = '#141517',
+      color = '#C1C2C5',
+      ['.description'] = {
+        color = '#909296'
+      }
+  },
+    iconColor = 'white'
+  })
 end)
 
-RegisterNetEvent('rockstar', function()
-  TriggerEvent('rockstar')
+RegisterNetEvent('hx_record:rockstar', function()
   ActivateRockstarEditor()
 end)
+
 
 
