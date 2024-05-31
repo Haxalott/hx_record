@@ -1,6 +1,3 @@
----@param description string
----@param title string
----@param icon string
 local function notify(description, title, icon)
   lib.notify({
     title = title,
