@@ -1,6 +1,8 @@
 <---hx_record--->
 A simple rockstar editor script using ox_lib
 
+join my discord: https://discord.gg/6btSzWVuwb
+
 /rockstar
 
 Dependencies --->
