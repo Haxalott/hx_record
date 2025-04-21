@@ -1,21 +1,23 @@
+name 'fivem-typescript-boilerplate'
+author 'Overextended'
+version '0.0.0'
+repository 'https://github.com/overextended/fivem-typescript-boilerplate.git'
 fx_version 'cerulean'
 game 'gta5'
+node_version '22'
 
-author 'Haxalott'
-description 'Rockstar Editor script'
-version '1.0.1'
-
-lua54 'yes'
-
-shared_scripts { 
-    '@ox_lib/init.lua',
-    'config.lua'
+files {
+	'locales/*.json',
+	'static/config.json',
+	'locales/en.json',
 }
 
-client_script { 
-    'client.lua'
+dependencies {
+	'/server:12913',
+	'/onesync',
+	'ox_lib',
 }
 
-dependency { 
-    'ox_lib' 
+client_scripts {
+	'dist/client.js',
 }
